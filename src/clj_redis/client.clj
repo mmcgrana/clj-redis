@@ -11,11 +11,11 @@
         p (.getPort u)]
     (Jedis. h p)))
 
-(defn ping [r]
+(defn ping [^Jedis r]
   (.ping r))
 
-(defn set [r k v]
+(defn set [^Jedis r k v]
   (.set r k v))
 
-(defn get [r k]
+(defn get [^Jedis r k]
   (.get r k))
