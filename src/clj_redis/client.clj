@@ -1,7 +1,7 @@
 (ns clj-redis.client
   (:import java.net.URI)
   (:import redis.clients.jedis.Jedis)
-  (:refer-clojure :exclude [get set]))
+  (:refer-clojure :exclude [get set keys]))
 
 (def ^:private local-url "redis://127.0.0.1:6379")
 
@@ -11,11 +11,14 @@
         p (.getPort u)]
     (Jedis. h p)))
 
-(defn ping [^Jedis r]
-  (.ping r))
+(defn ping [^Jedis j]
+  (.ping j))
 
-(defn set [^Jedis r k v]
-  (.set r k v))
+(defn set [^Jedis j k v]
+  (.set j k v))
 
-(defn get [^Jedis r k]
-  (.get r k))
+(defn get [^Jedis j k]
+  (.get j k))
+
+(defn keys [^Jedis j & [pattern]]
+  (seq (.keys j (or pattern "*"))))
