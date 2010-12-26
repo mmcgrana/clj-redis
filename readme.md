@@ -19,4 +19,4 @@ Clojure Redis client library.
 
 ## Installation
 
-Depend on `[clj-redis "0.0.1"]` in your `project.clj`.
+Depend on `[clj-redis "0.0.2"]` in your `project.clj`.
