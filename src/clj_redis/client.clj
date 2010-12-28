@@ -35,5 +35,31 @@
 (defn set [p ^String k ^String v]
   (lease p (fn [^Jedis j] (.set j k v))))
 
+(defn exists [p ^String k]
+  (lease p (fn [^Jedis j] (.exists j k))))
+
+(defn del [p ks]
+  (lease p (fn [^Jedis j] (.del j ^"[Ljava.lang.String;" (into-array ks)))))
+
 (defn keys [p & [^String pattern]]
   (lease p (fn [^Jedis j] (seq (.keys j (or pattern "*"))))))
+
+(defn lpush [p ^String k ^String v]
+  (lease p (fn [^Jedis j] (.lpush j k v))))
+
+(defn llen [p ^String k]
+  (lease p (fn [^Jedis j] (.llen j k))))
+
+(defn lpop [p ^String k]
+  (lease p (fn [^Jedis j] (.lpop j k))))
+
+(defn blpop [p ks ^Integer t]
+  (if-let [pair (lease p (fn [^Jedis j] (.blpop j t ^"[Ljava.lang.String;" (into-array ks))))]
+    (seq pair)))
+
+(defn rpop [p ^String k]
+  (lease p (fn [^Jedis j] (.rpop j k))))
+
+(defn brpop [p ks ^Integer t]
+  (if-let [pair (lease p (fn [^Jedis j] (.brpop j t ^"[Ljava.lang.String;" (into-array ks))))]
+    (seq pair)))

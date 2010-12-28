@@ -21,6 +21,20 @@ Clojure Redis client library.
 
 The connections represented by the return value of `clj-redis.client/init` are threadsafe; they are backed by a dynamic pool of connections to the Redis server.
 
+Implemented commands:
+
+* set
+* get
+* del
+* exists
+* keys
+* lpush
+* llen
+* lpop
+* blpop
+* rpop
+* brpop
+
 ## Installation
 
 Depend on `[clj-redis "0.0.5"]` in your `project.clj`.
