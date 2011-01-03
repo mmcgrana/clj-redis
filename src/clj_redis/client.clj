@@ -63,3 +63,18 @@
 (defn brpop [p ks ^Integer t]
   (if-let [pair (lease p (fn [^Jedis j] (.brpop j t ^"[Ljava.lang.String;" (into-array ks))))]
     (seq pair)))
+
+(defn zadd [p ^String k ^Double r ^String m]
+  (lease p (fn [^Jedis j] (.zadd j k r m))))
+
+(defn zcard [p ^String k]
+  (lease p (fn [^Jedis j] (.zcard j k))))
+
+(defn zrangebyscore
+  ([p ^String k ^Double min ^Double max]
+    (seq (lease p (fn [^Jedis j] (.zrangeByScore j k min max)))))
+  ([p ^String k ^Double min ^Double max ^Integer offset ^Integer count]
+    (seq (lease p (fn [^Jedis j] (.zrangeByScore j k min max offset count))))))
+
+(defn zrem [p ^String k ^String m]
+  (lease p (fn [^Jedis j] (.zrem j k m))))

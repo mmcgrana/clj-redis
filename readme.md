@@ -34,6 +34,10 @@ Implemented commands:
 * blpop
 * rpop
 * brpop
+* zadd
+* zcard
+* zrangebyscore
+* zrem
 
 ## Installation
 
