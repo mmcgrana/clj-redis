@@ -1,6 +1,6 @@
 (ns clj-redis.client
   (:import java.net.URI)
-  (:import (redis.clients.jedis Jedis JedisPool))
+  (:import (redis.clients.jedis Jedis JedisPool JedisPubSub))
   (:import org.apache.commons.pool.impl.GenericObjectPool)
   (:require [clojure.string :as str])
   (:refer-clojure :exclude [get set keys]))
@@ -81,3 +81,11 @@
 
 (defn publish [p ^String c ^String m]
   (lease p (fn [^Jedis j] (.publish j c m))))
+
+(defn subscribe [p chs handler]
+  (let [pub-sub (proxy [JedisPubSub] []
+                  (onSubscribe [ch cnt])
+                  (onUnsubscribe [ch cnt])
+                  (onMessage [ch msg] (handler ch msg)))]
+    (lease p (fn [^Jedis j]
+      (.subscribe j pub-sub ^"[Ljava.lang.String;" (into-array chs))))))
