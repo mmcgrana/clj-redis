@@ -1,4 +1,4 @@
-(defproject clj-redis "0.0.7"
+(defproject clj-redis "0.0.8"
   :dependencies
     [[org.clojure/clojure "1.3.0-alpha4"]
      [redis.clients/jedis "1.5.0"]
