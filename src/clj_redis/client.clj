@@ -78,3 +78,6 @@
 
 (defn zrem [p ^String k ^String m]
   (lease p (fn [^Jedis j] (.zrem j k m))))
+
+(defn publish [p ^String c ^String m]
+  (lease p (fn [^Jedis j] (.publish j c m))))
