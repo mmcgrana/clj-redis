@@ -38,7 +38,9 @@ Implemented commands:
 * zcard
 * zrangebyscore
 * zrem
+* publish
+* subscribe
 
 ## Installation
 
-Depend on `[clj-redis "0.0.7"]` in your `project.clj`.
+Depend on `[clj-redis "0.0.8"]` in your `project.clj`.
