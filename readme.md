@@ -43,4 +43,4 @@ Implemented commands:
 
 ## Installation
 
-Depend on `[clj-redis "0.0.8"]` in your `project.clj`.
+Depend on `[clj-redis "0.0.9"]` in your `project.clj`.
