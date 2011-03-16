@@ -5,7 +5,7 @@
   (:require [clojure.string :as str])
   (:refer-clojure :exclude [get set keys]))
 
-(def ^:private local-url
+(def ^{:private true} local-url
   "redis://127.0.0.1:6379")
 
 (defn init [& [{:keys [url timeout] :as opts}]]
