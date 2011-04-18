@@ -1,7 +1,6 @@
 (ns clj-redis.client
   (:import java.net.URI)
-  (:import (redis.clients.jedis Jedis JedisPool JedisPubSub))
-  (:import org.apache.commons.pool.impl.GenericObjectPool)
+  (:import (redis.clients.jedis Jedis JedisPool JedisPoolConfig JedisPubSub))
   (:require [clojure.string :as str])
   (:refer-clojure :exclude [get set keys]))
 
@@ -15,7 +14,7 @@
         port (.getPort uri)
         uinfo (.getUserInfo uri)
         pass (and uinfo (last (str/split uinfo #":")))
-        config (org.apache.commons.pool.impl.GenericObjectPool$Config.)
+        config (JedisPoolConfig.)
         pool (JedisPool. config host port tout pass)]
     pool))
 
