@@ -217,7 +217,7 @@
   (lease p (fn [^Jedis j] (seq (.zrange j k start end)))))
 
 (defn zrevrange [p ^String k ^Integer start ^Integer end]
-  (lease p (fn [^Jedis j] (seq (.zrange j k start end)))))
+  (lease p (fn [^Jedis j] (seq (.zrevrange j k start end)))))
 
 (defn zincrby [p ^String k ^Double s ^String m]
   (lease p (fn [^Jedis j] (.zincrby j k s m))))
