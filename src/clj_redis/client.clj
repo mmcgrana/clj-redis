@@ -231,6 +231,12 @@
 (defn zremrangebyscore [p ^String k ^Double start ^Double end]
   (lease p (fn [^Jedis j] (.zremrangeByScore j k start end))))
 
+(defn zinterstore [p ^String d k]
+  (lease p (fn [^Jedis j] (.zinterstore j d ^"[Ljava.lang.String;" (into-array k)))))
+
+(defn zunionstore [p ^String d k]
+  (lease p (fn [^Jedis j] (.zunionstore j d ^"[Ljava.lang.String;" (into-array k)))))
+
 
 ; Hashes
 
