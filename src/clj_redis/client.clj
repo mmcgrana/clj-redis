@@ -187,7 +187,7 @@
   (lease p (fn [^Jedis j] (.zadd j k r m))))
 
 (defn zcount [p ^String k ^Double min ^Double max]
-  (lease p (fn [^Jedis j] (.zcount j k))))
+  (lease p (fn [^Jedis j] (.zcount j k min max))))
 
 (defn zcard [p ^String k]
   (lease p (fn [^Jedis j] (.zcard j k))))
