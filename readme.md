@@ -1,6 +1,6 @@
 # clj-redis
 
-Clojure Redis client library.
+Clojure [Redis](http://redis.io) client library.
 
 ## Usage
 
@@ -25,3 +25,9 @@ The connections represented by the return value of `clj-redis.client/init` are t
 ## Installation
 
 Depend on `[clj-redis "0.0.12"]` in your `project.clj`.
+
+## License
+
+Copyright © 2010-2011 Mark McGranaghan
+
+Distributed under the MIT/X11 license; see the file COPYING.
