@@ -7,17 +7,21 @@
 (def ^{:private true} local-url
   "redis://127.0.0.1:6379")
 
-(defn init [& [{:keys [url timeout test-on-borrow] :as opts}]]
-  (let [uri (URI. (or url local-url))
-        tout (or timeout 2000)
-        host (.getHost uri)
-        port (.getPort uri)
-        uinfo (.getUserInfo uri)
-        pass (and uinfo (last (str/split uinfo #":")))
-        config (JedisPoolConfig.)]
-    (when test-on-borrow
-      (.setTestOnBorrow config test-on-borrow))
-    (JedisPool. config host port tout pass)))
+(defn init
+  ([] (init {}))
+  ([{:keys [url timeout test-on-borrow] :as opts}]
+     (let [uri (URI. (or url local-url))
+           tout (or timeout 2000)
+           host (.getHost uri)
+           port (.getPort uri)
+           uinfo (.getUserInfo uri)
+           pass (and uinfo (last (str/split uinfo #":")))
+           config (JedisPoolConfig.)]
+       (when test-on-borrow
+         (.setTestOnBorrow config test-on-borrow))
+       (JedisPool. config host port tout pass)))
+  ([k1 v1 & {:as opts}]
+     (init (assoc opts k1 v1))))
 
 (defn lease [^JedisPool p f]
   (let [j (.getResource p)]
