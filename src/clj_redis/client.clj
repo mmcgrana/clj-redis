@@ -13,7 +13,7 @@
      (let [uri (URI. (or url local-url))
            tout (or timeout 2000)
            host (.getHost uri)
-           port (.getPort uri)
+           port (if (pos? (.getPort uri)) (.getPort uri) 6379)
            uinfo (.getUserInfo uri)
            pass (and uinfo (last (str/split uinfo #":")))
            config (JedisPoolConfig.)]
