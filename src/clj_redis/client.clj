@@ -157,6 +157,9 @@
   [p k ^Integer start ^Integer end]
   (lease p (fn [^Jedis j] (seq (.lrange j k start end)))))
 
+(defn ltrim
+  [p k ^Integer start ^Integer end]
+  (lease p (fn [^Jedis j] (.ltrim j k start end))))
 
 ; Sets
 
